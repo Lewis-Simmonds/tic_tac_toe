@@ -1,9 +1,11 @@
 //keep track of turn and game number
 let turnCount = 0;
-let gameNumber = 0;
+let gameCount = 0;
 
 //function to run whenever box clicked
-const eachTurn = box_id => {
+function eachTurn() {
+
+    console.log(this.id);
 
     //arrays for values and HTML elements of each box
     let values = [];
@@ -11,7 +13,7 @@ const eachTurn = box_id => {
 
     //check if current player is X or O
     let player;
-    player = (turnCount + gameCount % 2 === 0) ? "X" : "O";
+    player = ( (turnCount + gameCount) % 2 === 0) ? "X" : "O";
 
     //get values and HTML elements for each box
     for (let i = 0; i <= 8; i++) {
@@ -20,11 +22,11 @@ const eachTurn = box_id => {
     };
 
     //if box empty, fill in with players symbol
-    if (values[box_id] === "X" || values[box_id] === "O") {
+    if (values[this.id] === "X" || values[this.id] === "O") {
         return;
     } else {
-        values[box_id] = player;
-        boxes[box_id].innerHTML = player;
+        values[this.id] = player;
+        boxes[this.id].innerHTML = player;
         turnCount++;
     };
     
@@ -61,3 +63,7 @@ const eachTurn = box_id => {
     };
 };
 
+//add event listeners to each box
+for (let i = 0; i <= 8; i++) {
+    document.getElementById(`${i}`).addEventListener('click', eachTurn);
+};

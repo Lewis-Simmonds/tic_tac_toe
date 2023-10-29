@@ -23,6 +23,7 @@ const eachTurn = box_id => {
     if (values[box_id] === "X" || values[box_id] === "O") {
         return;
     } else {
+        values[box_id] = player;
         boxes[box_id].innerHTML = player;
     };
     
@@ -48,6 +49,10 @@ const eachTurn = box_id => {
                 counter++;
             };
         };
+        if (counter === 3) {
+            turnCount++;
+            alert("You Win!");
+        };
     };
 
 
@@ -56,5 +61,4 @@ const eachTurn = box_id => {
     turnCount++;
 
 };
-
 

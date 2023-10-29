@@ -11,7 +11,7 @@ const eachTurn = box_id => {
 
     //check if current player is X or O
     let player;
-    player = (turnCount % 2 === 0) ? "X" : "O";
+    player = (turnCount + gameCount % 2 === 0) ? "X" : "O";
 
     //get values and HTML elements for each box
     for (let i = 0; i <= 8; i++) {
@@ -25,6 +25,7 @@ const eachTurn = box_id => {
     } else {
         values[box_id] = player;
         boxes[box_id].innerHTML = player;
+        turnCount++;
     };
     
     //all winning combinations
@@ -50,15 +51,13 @@ const eachTurn = box_id => {
             };
         };
         if (counter === 3) {
-            turnCount++;
-            alert("You Win!");
+            for (let k = 0; k < 3; k++) {
+                let cellToHighlight = Number(winCombos[i][k]);
+                boxes[cellToHighlight].style.color = 'red';
+            };
+            gameCount++;
+            turnCount = 0;
         };
     };
-
-
-
-    //increment turn count
-    turnCount++;
-
 };
 

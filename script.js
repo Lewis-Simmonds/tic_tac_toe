@@ -13,7 +13,7 @@ function eachTurn() {
 
     //check if current player is X or O
     let player;
-    player = ( (turnCount + gameCount) % 2 === 0) ? "X" : "O";
+    player = ( (turnCount + gameCount) % 2 === 0) ? 'X' : 'O';
 
     //get values and HTML elements for each box
     for (let i = 0; i <= 8; i++) {
@@ -22,7 +22,7 @@ function eachTurn() {
     };
 
     //if box empty, fill in with players symbol
-    if (values[this.id] === "X" || values[this.id] === "O") {
+    if (values[this.id] === 'X' || values[this.id] === 'O') {
         return;
     } else {
         values[this.id] = player;
@@ -31,7 +31,7 @@ function eachTurn() {
     };
     
     //all winning combinations
-    const winCombos = ["012", "345", "678", "036", "147", "258", "246", "048"];
+    const winCombos = ['012', '345', '678', '036', '147', '258', '246', '048'];
 
     //array to get players cells marked
     let playerCells = [];
@@ -52,14 +52,23 @@ function eachTurn() {
                 counter++;
             };
         };
+        //below happens if game has been won
         if (counter === 3) {
             for (let k = 0; k < 3; k++) {
                 let cellToHighlight = Number(winCombos[i][k]);
-                boxes[cellToHighlight].style.color = 'red';
+                let playerColor = player === 'X' ? 'red' : 'blue';
+                boxes[cellToHighlight].style.color = playerColor;
             };
+            gameWin();
             gameCount++;
             turnCount = 0;
         };
+    };
+};
+
+function gameWin() {
+    for (let i = 0; i <= 8; i++) {
+        document.getElementById(`${i}`).removeEventListener('click', eachTurn);
     };
 };
 

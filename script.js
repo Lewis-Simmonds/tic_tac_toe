@@ -19,9 +19,11 @@ let gameHTML = `
 </div>
 `;
 
-//keep track of turn and game number
+//keep track of turn, game number and scores
 let turnCount = 0;
 let gameCount = 0;
+let playerOneScore = 0;
+let playerTwoScore = 0;
 
 //function to start new game
 function startGame() {
@@ -32,10 +34,24 @@ function startGame() {
     };
 };
 
+//run this when game is won by either player
+function gameWin(player, playerOneScore, playerTwoScore) {
+    for (let i = 0; i <= 8; i++) {
+        document.getElementById(`${i}`).removeEventListener('click', eachTurn);
+    };
+    if (player === "X") {
+        playerOneScore++;
+        document.getElementById('player-one').innerHTML = `<h2>${playerOneScore}</h2>`;
+    };
+    if (player === "O") {
+        playerTwoScore++;
+        document.getElementById('player-two').innerHTML = `<h2>${playerTwoScore}</h2>`;
+    };
+    return [playerOneScore, playerTwoScore];
+};
+
 //function to run whenever box clicked
 function eachTurn() {
-
-    console.log(this.id);
 
     //arrays for values and HTML elements of each box
     let values = [];
@@ -89,17 +105,16 @@ function eachTurn() {
                 let playerColor = player === 'X' ? 'red' : 'blue';
                 boxes[cellToHighlight].style.color = playerColor;
             };
-            gameWin();
+            
+            scores= gameWin(player, playerOneScore, playerTwoScore);
+            playerOneScore = scores[0];
+            playerTwoScore = scores[1]; 
             gameCount++;
             turnCount = 0;
         };
     };
 };
 
-function gameWin() {
-    for (let i = 0; i <= 8; i++) {
-        document.getElementById(`${i}`).removeEventListener('click', eachTurn);
-    };
-};
+
 
 

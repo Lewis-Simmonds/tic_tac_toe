@@ -41,13 +41,18 @@ function gameWin(player, playerOneScore, playerTwoScore) {
     };
     if (player === "X") {
         playerOneScore++;
+        document.getElementById('winner').innerHTML = `<h2 style="color: red;">Player 1 wins!</h2>`;
         document.getElementById('player-one').innerHTML = `<h2>${playerOneScore}</h2>`;
     };
     if (player === "O") {
         playerTwoScore++;
+        document.getElementById('winner').innerHTML = `<h2 style="color: blue;">Player 2 wins!</h2>`
         document.getElementById('player-two').innerHTML = `<h2>${playerTwoScore}</h2>`;
     };
-    setTimeout(() => {document.getElementById('game-area').innerHTML = newGameHTML}, 3000);
+    setTimeout(() => {
+        document.getElementById('game-area').innerHTML = newGameHTML;
+        document.getElementById('winner').innerHTML = "";
+    }, 2500);
     return [playerOneScore, playerTwoScore];
 };
 
@@ -56,7 +61,11 @@ function gameDraw() {
     for (let i = 0; i <= 8; i++) {
         document.getElementById(`${i}`).removeEventListener('click', eachTurn);
     };
-    setTimeout(() => {document.getElementById('game-area').innerHTML = newGameHTML}, 3000);
+    document.getElementById('winner').innerHTML = `<h2>It's a draw!</h2>`;
+    setTimeout(() => {
+        document.getElementById('game-area').innerHTML = newGameHTML;
+        document.getElementById('winner').innerHTML = "";
+    }, 2500);
 };
 
 //function to run whenever box clicked

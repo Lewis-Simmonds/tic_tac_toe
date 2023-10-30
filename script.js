@@ -47,12 +47,26 @@ function gameWin(player, playerOneScore, playerTwoScore) {
         playerTwoScore++;
         document.getElementById('player-two').innerHTML = `<h2>${playerTwoScore}</h2>`;
     };
-    document.getElementById('game-area').innerHTML = newGameHTML;
+    setTimeout(() => {document.getElementById('game-area').innerHTML = newGameHTML}, 3000);
     return [playerOneScore, playerTwoScore];
+};
+
+//run this when game is drawn
+function gameDraw() {
+    for (let i = 0; i <= 8; i++) {
+        document.getElementById(`${i}`).removeEventListener('click', eachTurn);
+    };
+    setTimeout(() => {document.getElementById('game-area').innerHTML = newGameHTML}, 3000);
 };
 
 //function to run whenever box clicked
 function eachTurn() {
+
+    console.log(turnCount);
+    //add in case game ends in draw
+    if (turnCount === 8) {
+        gameDraw();
+    };
 
     //arrays for values and HTML elements of each box
     let values = [];

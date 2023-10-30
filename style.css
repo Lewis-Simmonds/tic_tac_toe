@@ -15,6 +15,25 @@ body {
     margin: 0 auto;
 }
 
+.title h1 {
+    font-size: 7.5vw;
+}
+
+.new-game {
+    overflow-wrap: break-word;
+    text-align: center;
+    margin: 0 15vw;
+}
+
+.new-game p {
+    font-size: 4vw;
+    padding: 2vw 0;
+}
+
+.new-game button {
+    margin: 2vw 0;
+}
+
 .tic-tac-toe {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -53,12 +72,16 @@ body {
     height: 100%;
 }
 
-#player-one {
+.player-one {
     background-color: red;
 }
 
-#player-two {
+.player-two {
     background-color: blue;
+}
+
+.score h2 {
+    font-size: 5vw;
 }
   
 @media screen and (min-width: 100vh) {

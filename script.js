@@ -1,6 +1,6 @@
 let newGameHTML = `
 <div class="new-game">
-    <h2>Click below to start a new game!</h2>
+    <p>Click the button below to start a new game!</p>
     <button id="start-game" onclick="startGame()">Start</button>
 <div>
 `
@@ -47,6 +47,7 @@ function gameWin(player, playerOneScore, playerTwoScore) {
         playerTwoScore++;
         document.getElementById('player-two').innerHTML = `<h2>${playerTwoScore}</h2>`;
     };
+    document.getElementById('game-area').innerHTML = newGameHTML;
     return [playerOneScore, playerTwoScore];
 };
 

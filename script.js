@@ -1,6 +1,36 @@
+let newGameHTML = `
+<div class="new-game">
+    <h2>Click below to start a new game!</h2>
+    <button id="start-game" onclick="startGame()">Start</button>
+<div>
+`
+
+let gameHTML = `
+<div class="tic-tac-toe">
+    <div class="cell" id="0"></div>
+    <div class="cell" id="1"></div>
+    <div class="cell" id="2"></div>
+    <div class="cell" id="3"></div>
+    <div class="cell" id="4"></div>
+    <div class="cell" id="5"></div>
+    <div class="cell" id="6"></div>
+    <div class="cell" id="7"></div>
+    <div class="cell" id="8"></div>
+</div>
+`;
+
 //keep track of turn and game number
 let turnCount = 0;
 let gameCount = 0;
+
+//function to start new game
+function startGame() {
+    document.getElementById('game-area').innerHTML = gameHTML;
+    //add event listeners to each box
+    for (let i = 0; i <= 8; i++) {
+        document.getElementById(`${i}`).addEventListener('click', eachTurn);
+    };
+};
 
 //function to run whenever box clicked
 function eachTurn() {
@@ -72,7 +102,4 @@ function gameWin() {
     };
 };
 
-//add event listeners to each box
-for (let i = 0; i <= 8; i++) {
-    document.getElementById(`${i}`).addEventListener('click', eachTurn);
-};
+
